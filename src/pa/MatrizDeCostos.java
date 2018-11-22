@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MatrizDeCostos {
 	private int[][] matriz;
 	private int cantidadDeNodos;
-	private static final int INFINITO = 9999999;
+	public static final int INFINITO = 9999999;
 	
 	public MatrizDeCostos(int cantidadDeNodos) {
 		this.cantidadDeNodos = cantidadDeNodos;

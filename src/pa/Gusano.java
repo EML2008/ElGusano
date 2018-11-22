@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Gusano {
-	private static final int INFINITO = 9999999;
 	private int cantidadDeEnlaces;
 	private int cantidadDeComputadoras;
 	private Map<Integer, List<Arista>> listaDeAdyacencia;
@@ -22,12 +21,31 @@ public class Gusano {
 	public void resolver() {
 		this.cantidadDeComputadoras = this.listaDeAdyacencia.size();
 		this.matrizDeCostos = new MatrizDeCostos(cantidadDeComputadoras);
-		for (int i = 0; i < this.cantidadDeComputadoras; i++)// CLAVE DEL MAPA
-		{
+		int costoIaJ = 0;
+		int costoIaK = 0;
+		int costoKaJ = 0;
+		for (int i = 0; i < this.cantidadDeComputadoras; i++) {
 			for (Arista a : this.listaDeAdyacencia.get(i)) {
 				this.matrizDeCostos.set(i, a.getDestino().getNumero(), a.getCosto());
 			}
 		}
+
+		for (int k = 0; k < this.cantidadDeComputadoras; k++) {
+			for (int i = 0; i < this.cantidadDeComputadoras; i++) {
+				for (int j = 0; j < this.cantidadDeComputadoras; j++) {
+					if (k != i && k != j && j != i) {
+						costoIaJ = this.matrizDeCostos.get(i, j);
+						costoIaK = this.matrizDeCostos.get(i, k);
+						costoKaJ = this.matrizDeCostos.get(j, k);
+						if (costoIaJ > (costoIaK + costoKaJ)) {
+							this.matrizDeCostos.set(i, j, costoIaK + costoKaJ);
+						}
+					}
+				}
+			}
+		}
+		
+		//RECORRER MATRIZ DE INFECCIONES
 	}
 
 	public void setListaDeAdyacencia(int o, int costo, int d) {
