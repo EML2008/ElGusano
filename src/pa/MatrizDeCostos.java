@@ -29,6 +29,9 @@ public class MatrizDeCostos {
 	}
 
 	public int get(int fila, int columna) {
+		if (columna == fila) {
+			return 0;
+		}
 		if (columna > fila)
 			return this.matriz[columna][fila];
 		return this.matriz[fila][columna];

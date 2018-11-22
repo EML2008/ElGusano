@@ -36,7 +36,7 @@ public class Gusano {
 					if (k != i && k != j && j != i) {
 						costoIaJ = this.matrizDeCostos.get(i, j);
 						costoIaK = this.matrizDeCostos.get(i, k);
-						costoKaJ = this.matrizDeCostos.get(j, k);
+						costoKaJ = this.matrizDeCostos.get(k, j);
 						if (costoIaJ > (costoIaK + costoKaJ)) {
 							this.matrizDeCostos.set(i, j, costoIaK + costoKaJ);
 						}
@@ -44,8 +44,26 @@ public class Gusano {
 				}
 			}
 		}
-		
-		//RECORRER MATRIZ DE INFECCIONES
+
+		int[] candidatos = new int[this.cantidadDeComputadoras];
+
+		for (HoraInfeccion horaInfeccion : horaDeInfeccion) {
+			int computadoraActual = horaInfeccion.getComputadoraInfectada().getNumero();
+			for (int i = 0; i < this.cantidadDeComputadoras; i++) {
+				if (this.matrizDeCostos.get(computadoraActual, i) != matrizDeCostos.INFINITO
+						&& horaInfeccion.getTiempoDeInfeccion() == this.matrizDeCostos.get(computadoraActual, i)) {
+					System.out.println("nodo " + this.matrizDeCostos.get(computadoraActual, i));
+					candidatos[i]++;
+				}
+			}
+		}
+
+		for (int i = 0; i < candidatos.length; i++) {
+			if (candidatos[i] == horaDeInfeccion.size()) {
+				System.out.println(i + " " + candidatos[i]);
+			}
+		}
+		// RECORRER MATRIZ DE INFECCIONES
 	}
 
 	public void setListaDeAdyacencia(int o, int costo, int d) {

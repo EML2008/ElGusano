@@ -14,11 +14,11 @@ public class ArchivoElGusano {
 		Gusano gusano = new Gusano(cantidadDeEnlaces);
 		List<HoraInfeccion> horaDeInfeccion = new ArrayList<>();
 		for (int i = 0; i < cantidadDeEnlaces; i++) {
-			gusano.setListaDeAdyacencia(entrada.nextInt(), entrada.nextInt(), entrada.nextInt());
+			gusano.setListaDeAdyacencia(entrada.nextInt() - 1, entrada.nextInt(), entrada.nextInt() - 1);
 		}
 		int cantidadDeComputadorasInfectadas = entrada.nextInt();
 		for (int i = 0; i < cantidadDeComputadorasInfectadas; i++) {
-			horaDeInfeccion.add(new HoraInfeccion(new Nodo(entrada.nextInt()), entrada.nextInt()));
+			horaDeInfeccion.add(new HoraInfeccion(new Nodo(entrada.nextInt() - 1), entrada.nextInt()));
 		}
 		entrada.close();
 		gusano.setHoraDeInfeccion(horaDeInfeccion);
