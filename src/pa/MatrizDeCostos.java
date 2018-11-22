@@ -1,14 +1,18 @@
 package pa;
 
+import java.util.Arrays;
+
 public class MatrizDeCostos {
 	private int[][] matriz;
 	private int cantidadDeNodos;
-
+	private static final int INFINITO = 9999999;
+	
 	public MatrizDeCostos(int cantidadDeNodos) {
 		this.cantidadDeNodos = cantidadDeNodos;
 		this.matriz = new int[cantidadDeNodos][];
 		for (int i = 0; i < cantidadDeNodos; i++) {
 			matriz[i] = new int[i];
+			Arrays.fill(matriz[i], MatrizDeCostos.INFINITO);
 		}
 	}
 

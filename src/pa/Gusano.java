@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Gusano {
+	private static final int INFINITO = 9999999;
 	private int cantidadDeEnlaces;
 	private int cantidadDeComputadoras;
 	private Map<Integer, List<Arista>> listaDeAdyacencia;
 	private List<HoraInfeccion> horaDeInfeccion;
+	private MatrizDeCostos matrizDeCostos;
 
 	public Gusano(int cantidadDeEnlaces) {
 		this.cantidadDeEnlaces = cantidadDeEnlaces;
@@ -18,7 +20,14 @@ public class Gusano {
 	}
 
 	public void resolver() {
-		
+		this.cantidadDeComputadoras = this.listaDeAdyacencia.size();
+		this.matrizDeCostos = new MatrizDeCostos(cantidadDeComputadoras);
+		for (int i = 0; i < this.cantidadDeComputadoras; i++)// CLAVE DEL MAPA
+		{
+			for (Arista a : this.listaDeAdyacencia.get(i)) {
+				this.matrizDeCostos.set(i, a.getDestino().getNumero(), a.getCosto());
+			}
+		}
 	}
 
 	public void setListaDeAdyacencia(int o, int costo, int d) {
