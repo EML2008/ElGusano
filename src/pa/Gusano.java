@@ -18,7 +18,7 @@ public class Gusano {
 		this.listaDeAdyacencia = new HashMap<Integer, List<Arista>>();
 	}
 
-	public void resolver() {
+	public ArrayList<Integer> resolver() {
 		this.cantidadDeComputadoras = this.listaDeAdyacencia.size();
 		this.matrizDeCostos = new MatrizDeCostos(cantidadDeComputadoras);
 		int costoIaJ = 0;
@@ -52,18 +52,18 @@ public class Gusano {
 			for (int i = 0; i < this.cantidadDeComputadoras; i++) {
 				if (this.matrizDeCostos.get(computadoraActual, i) != matrizDeCostos.INFINITO
 						&& horaInfeccion.getTiempoDeInfeccion() == this.matrizDeCostos.get(computadoraActual, i)) {
-					System.out.println("nodo " + this.matrizDeCostos.get(computadoraActual, i));
 					candidatos[i]++;
 				}
 			}
 		}
 
+		ArrayList<Integer> resultados = new ArrayList<Integer>();
 		for (int i = 0; i < candidatos.length; i++) {
 			if (candidatos[i] == horaDeInfeccion.size()) {
-				System.out.println(i + " " + candidatos[i]);
+				resultados.add(i+1);
 			}
 		}
-		// RECORRER MATRIZ DE INFECCIONES
+		return resultados;
 	}
 
 	public void setListaDeAdyacencia(int o, int costo, int d) {

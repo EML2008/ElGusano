@@ -25,4 +25,9 @@ public class ArchivoElGusano {
 		return gusano;
 	}
 
+	public static void escribir(String string, ArrayList<Integer> resolver) {
+		
+		
+	}
+
 }
