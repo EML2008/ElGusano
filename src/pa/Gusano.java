@@ -15,8 +15,8 @@ public class Gusano {
 
 	public Gusano(int cantidadDeEnlaces) {
 		this.cantidadDeEnlaces = cantidadDeEnlaces;
-		this.horaDeInfeccion = new ArrayList<>();
-		this.listaDeAdyacencia = new HashMap<>();
+		this.horaDeInfeccion = new ArrayList<HoraInfeccion>();
+		this.listaDeAdyacencia = new HashMap<Integer, List<Arista>>();
 	}
 
 	public void resolver() {
